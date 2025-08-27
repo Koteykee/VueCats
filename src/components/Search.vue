@@ -11,5 +11,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  border-radius: 4px;
+  border-width: 0;
 }
 </style>

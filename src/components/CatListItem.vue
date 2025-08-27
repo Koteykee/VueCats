@@ -4,7 +4,9 @@
       <img :src="cat.url" class="catImg preview" />
       <img :src="cat.url" class="catImg full" />
     </div>
-    <p class="catName">{{ cat.breeds[0].name }}</p>
+    <router-link :to="`/cat/${cat.id}`">
+      <p class="catName" @click="">{{ cat.breeds[0].name }}</p>
+    </router-link>
   </div>
 </template>
 
@@ -84,5 +86,10 @@ const { cat } = defineProps({
 .catName {
   font-size: 20px;
   padding: 4px;
+  cursor: pointer;
+}
+
+.catName:hover {
+  text-decoration: underline;
 }
 </style>

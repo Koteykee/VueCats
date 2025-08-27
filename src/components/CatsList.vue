@@ -26,7 +26,6 @@ const fetchCatList = async () => {
 };
 
 cats.value = await fetchCatList();
-console.log(cats.value);
 </script>
 
 <style scoped>
