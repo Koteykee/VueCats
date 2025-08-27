@@ -1,9 +1,8 @@
 <template>
-  <div class="catsList">
-    <ul>
-      <li>
-        <CatListItem />
-        <p>{{ cats.value }}</p>
+  <div class="catsContainer">
+    <ul class="catsList">
+      <li v-for="cat in cats" :key="cat.id">
+        <CatListItem :cat="cat" />
       </li>
     </ul>
   </div>
@@ -27,13 +26,24 @@ const fetchCatList = async () => {
 };
 
 cats.value = await fetchCatList();
+console.log(cats.value);
 </script>
 
 <style scoped>
+.catsContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
 .catsList {
-  width: 80%;
   list-style: none;
   margin: 10px 0;
-  display: flex;
+  padding: 0 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  box-sizing: border-box;
 }
 </style>
