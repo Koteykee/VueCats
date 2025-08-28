@@ -5,35 +5,66 @@
     <div class="catContainer">
       <div>
         <p>Breed Characteristics:</p>
-        <p>Adaptability: {{ cat.breeds[0].adaptability }}</p>
-        <p>Affection level: {{ cat.breeds[0].affection_level }}</p>
-        <p>Stranger friendly: {{ cat.breeds[0].stranger_friendly }}</p>
-        <p>Child friendly: {{ cat.breeds[0].child_friendly }}</p>
-        <p>Dog friendly: {{ cat.breeds[0].dog_friendly }}</p>
-        <p>Energy level: {{ cat.breeds[0].energy_level }}</p>
-        <p>Grooming: {{ cat.breeds[0].grooming }}</p>
-        <p>Health issues: {{ cat.breeds[0].health_issues }}</p>
-        <p>Intelligence: {{ cat.breeds[0].intelligence }}</p>
-        <p>Shedding level: {{ cat.breeds[0].shedding_level }}</p>
-        <p>Social needs: {{ cat.breeds[0].social_needs }}</p>
-        <p>Vocalisation: {{ cat.breeds[0].vocalisation }}</p>
-        <p>Hairless: {{ cat.breeds[0].hairless }}</p>
-        <p>Suppressed tail: {{ cat.breeds[0].suppressed_tail }}</p>
-        <p>Short legs: {{ cat.breeds[0].short_legs }}</p>
-        <p>Hypoallergenic: {{ cat.breeds[0].hypoallergenic }}</p>
-        <hr />
-        <p>
-          Click the links below if you want to know even more about this breed!
-        </p>
-        <hr />
-        <a :href="cat.breeds[0].vetstreet_url" target="_blank">Vetstreet</a>
-        <br />
-        <a :href="cat.breeds[0].vcahospitals_url" target="_blank"
-          >Vcahospitals</a
+        <CharCircles title="Adaptability" :value="cat.breeds[0].adaptability" />
+        <CharCircles
+          title="Affection level"
+          :value="cat.breeds[0].affection_level"
+        />
+        <CharCircles
+          title="Stranger friendly"
+          :value="cat.breeds[0].stranger_friendly"
+        />
+        <CharCircles
+          title="Child friendly"
+          :value="cat.breeds[0].child_friendly"
+        />
+        <CharCircles title="Dog friendly" :value="cat.breeds[0].dog_friendly" />
+        <CharCircles title="Energy level" :value="cat.breeds[0].energy_level" />
+        <CharCircles title="Grooming" :value="cat.breeds[0].grooming" />
+        <CharCircles
+          title="Health issues"
+          :value="cat.breeds[0].health_issues"
+        />
+        <CharCircles title="Intelligence" :value="cat.breeds[0].intelligence" />
+        <CharCircles
+          title="Shedding level"
+          :value="cat.breeds[0].shedding_level"
+        />
+        <CharCircles title="Social needs" :value="cat.breeds[0].social_needs" />
+        <CharCircles title="Vocalisation" :value="cat.breeds[0].vocalisation" />
+        <CharCircles title="Hairless" :value="cat.breeds[0].hairless" />
+        <CharCircles
+          title="Suppressed tail"
+          :value="cat.breeds[0].suppressed_tail"
+        />
+        <CharCircles title="Short legs" :value="cat.breeds[0].short_legs" />
+        <CharCircles
+          title="Hypoallergenic"
+          :value="cat.breeds[0].hypoallergenic"
+        />
+        <div
+          v-show="cat.breeds[0].vetstreet_url || cat.breeds[0].vcahospitals_url"
         >
+          <hr />
+          <p>Click below if you want to know even more about this breed!</p>
+          <hr />
+          <a
+            :href="cat.breeds[0].vetstreet_url"
+            v-show="cat.breeds[0].vetstreet_url"
+            target="_blank"
+            >Vetstreet</a
+          >
+          <br />
+          <a
+            :href="cat.breeds[0].vcahospitals_url"
+            v-show="cat.breeds[0].vcahospitals_url"
+            target="_blank"
+            >Vcahospitals</a
+          >
+        </div>
       </div>
       <div>
-        <p>{{ cat.breeds[0].name }}</p>
+        <p class="catNameProfile">{{ cat.breeds[0].name }}</p>
         <img :src="cat.url" alt="Cat Photo" class="catImg" />
         <p>Temperament: {{ cat.breeds[0].temperament }}</p>
         <p>Origin: {{ cat.breeds[0].origin }}</p>
@@ -48,6 +79,7 @@
 import { useRoute } from "vue-router";
 import { ref } from "vue";
 
+import CharCircles from "./CharCircles.vue";
 import { getCatById } from "@/api/api";
 
 const route = useRoute();
@@ -69,6 +101,11 @@ cat.value = await fetchCatPage();
 <style scoped>
 .catName {
   margin: 14px;
+  font-size: 26px;
+}
+
+.catNameProfile {
+  font-size: 20px;
 }
 
 hr {
@@ -87,5 +124,13 @@ hr {
 
 .catImg {
   width: 500px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+main {
+  font-size: 18px;
 }
 </style>
