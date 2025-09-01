@@ -4,11 +4,15 @@
       <h1>Cat Wiki</h1>
     </router-link>
     <Search />
-    <RandomCat />
+    <Suspense>
+      <RandomCat />
+    </Suspense>
   </nav>
 </template>
 
 <script setup>
+import { Suspense } from "vue";
+
 import Search from "./Search.vue";
 import RandomCat from "./RandomCat.vue";
 </script>

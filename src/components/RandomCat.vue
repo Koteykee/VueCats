@@ -1,10 +1,16 @@
 <template>
   <div>
-    <h2 class="randomCat">Random Cat</h2>
+    <router-link :to="`/cat/random`">
+      <h2 class="randomCat" @click="store.fetchRandomCat">Random Cat</h2>
+    </router-link>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useCatStore } from "@/stores/catStore";
+
+const store = useCatStore();
+</script>
 
 <style scoped>
 .randomCat {

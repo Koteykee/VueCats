@@ -4,44 +4,9 @@
     <hr />
     <div class="catContainer">
       <div>
-        <p>Breed Characteristics:</p>
-        <CharCircles title="Adaptability" :value="cat.breeds[0].adaptability" />
-        <CharCircles
-          title="Affection level"
-          :value="cat.breeds[0].affection_level"
-        />
-        <CharCircles
-          title="Stranger friendly"
-          :value="cat.breeds[0].stranger_friendly"
-        />
-        <CharCircles
-          title="Child friendly"
-          :value="cat.breeds[0].child_friendly"
-        />
-        <CharCircles title="Dog friendly" :value="cat.breeds[0].dog_friendly" />
-        <CharCircles title="Energy level" :value="cat.breeds[0].energy_level" />
-        <CharCircles title="Grooming" :value="cat.breeds[0].grooming" />
-        <CharCircles
-          title="Health issues"
-          :value="cat.breeds[0].health_issues"
-        />
-        <CharCircles title="Intelligence" :value="cat.breeds[0].intelligence" />
-        <CharCircles
-          title="Shedding level"
-          :value="cat.breeds[0].shedding_level"
-        />
-        <CharCircles title="Social needs" :value="cat.breeds[0].social_needs" />
-        <CharCircles title="Vocalisation" :value="cat.breeds[0].vocalisation" />
-        <CharCircles title="Hairless" :value="cat.breeds[0].hairless" />
-        <CharCircles
-          title="Suppressed tail"
-          :value="cat.breeds[0].suppressed_tail"
-        />
-        <CharCircles title="Short legs" :value="cat.breeds[0].short_legs" />
-        <CharCircles
-          title="Hypoallergenic"
-          :value="cat.breeds[0].hypoallergenic"
-        />
+        <div>
+          <BreedChars :breed="cat.breeds[0]" />
+        </div>
         <div
           v-show="cat.breeds[0].vetstreet_url || cat.breeds[0].vcahospitals_url"
         >
@@ -77,25 +42,23 @@
 
 <script setup>
 import { useRoute } from "vue-router";
-import { ref } from "vue";
 
-import CharCircles from "./CharCircles.vue";
-import { getCatById } from "@/api/api";
+import BreedChars from "./BreedChars.vue";
+import { useCatStore } from "@/stores/catStore";
+import { storeToRefs } from "pinia";
 
 const route = useRoute();
 
-const cat = ref([]);
+const store = useCatStore();
 
-const fetchCatPage = async () => {
-  try {
-    const response = await getCatById(route.params.id);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
+const { cat } = storeToRefs(store);
 
-cat.value = await fetchCatPage();
+if (route.params.id !== "random") {
+  store.catId = route.params.id;
+  await store.fetchCatPage();
+} else {
+  await store.fetchRandomCat();
+}
 </script>
 
 <style scoped>
