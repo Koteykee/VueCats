@@ -21,7 +21,6 @@ import RandomCat from "./RandomCat.vue";
 .nav {
   width: 100%;
   height: 60px;
-  background: #32d7ed;
   background: linear-gradient(
     150deg,
     rgba(50, 215, 237, 1) 0%,
@@ -32,11 +31,11 @@ import RandomCat from "./RandomCat.vue";
   align-items: center;
   justify-content: space-between;
   position: relative;
+  padding: 0 20px;
 }
 
 h1 {
   font-size: 24px;
-  padding-left: 10px;
   cursor: pointer;
 }
 </style>

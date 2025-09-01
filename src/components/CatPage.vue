@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <div class="cat">
     <h2 class="catName">{{ cat.breeds[0].name }}</h2>
     <hr />
     <div class="catContainer">
@@ -29,7 +29,6 @@
         </div>
       </div>
       <div>
-        <p class="catNameProfile">{{ cat.breeds[0].name }}</p>
         <img :src="cat.url" alt="Cat Photo" class="catImg" />
         <p>Temperament: {{ cat.breeds[0].temperament }}</p>
         <p>Origin: {{ cat.breeds[0].origin }}</p>
@@ -37,7 +36,7 @@
         <p>Life span: {{ cat.breeds[0].life_span }} years</p>
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <script setup>
@@ -67,10 +66,6 @@ if (route.params.id !== "random") {
   font-size: 26px;
 }
 
-.catNameProfile {
-  font-size: 20px;
-}
-
 hr {
   border: none;
   height: 2px;
@@ -82,7 +77,8 @@ hr {
 
 .catContainer {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .catImg {
@@ -93,7 +89,19 @@ a:hover {
   text-decoration: underline;
 }
 
-main {
+.cat {
   font-size: 18px;
+}
+
+p {
+  max-width: 500px;
+}
+
+@media (max-width: 900px) {
+  .catContainer {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 20px;
+  }
 }
 </style>

@@ -11,11 +11,6 @@ body {
   background-color: rgb(179, 219, 245);
 }
 
-main {
-  width: 100%;
-  margin: 0 auto;
-}
-
 a {
   text-decoration: none;
   color: black;

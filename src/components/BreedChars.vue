@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="breed">
     <h3>Breed Characteristics:</h3>
     <CharCircles
       v-for="key in keys"
@@ -46,4 +46,11 @@ function formatTitle(str) {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+@media (max-width: 900px) {
+  .breed {
+    margin: 0 auto;
+    width: fit-content;
+  }
+}
+</style>

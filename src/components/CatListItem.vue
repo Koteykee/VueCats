@@ -24,11 +24,9 @@ const { cat } = defineProps({
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
-  max-width: 300px;
   background-color: rgb(93, 193, 218);
   padding: 6px;
   border: 2px solid rgb(43, 81, 153);
-  box-sizing: border-box;
   overflow: visible;
 
   display: flex;

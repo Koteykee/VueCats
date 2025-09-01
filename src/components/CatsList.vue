@@ -30,19 +30,42 @@ cats.value = await fetchCatList();
 
 <style scoped>
 .catsContainer {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  box-sizing: border-box;
+  margin: 10px auto;
 }
 
 .catsList {
   list-style: none;
-  margin: 10px 0;
-  padding: 0 10px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  box-sizing: border-box;
+}
+
+li {
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 1500px) {
+  .catsList {
+    padding: 0 80px;
+  }
+}
+
+@media (max-width: 1299px) {
+  .catsList {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 999px) {
+  .catsList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 699px) {
+  .catsList {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
