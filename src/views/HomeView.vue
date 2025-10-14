@@ -14,10 +14,10 @@ import CatsList from "@/components/CatsList.vue";
 </script>
 
 <style scoped>
-/* HTML: <div class="loader"></div> */
 .loader {
   width: 100%;
   height: 22px;
+  margin-top: 10px;
   color: #40aff0;
   border: 2px solid;
   position: relative;

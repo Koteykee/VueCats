@@ -5,7 +5,7 @@
       <img :src="cat.url" class="catImg full" />
     </div>
     <router-link :to="`/cat/${cat.id}`">
-      <p class="catName" @click="">{{ cat.breeds[0].name }}</p>
+      <p class="catName">{{ cat.breeds[0].name }}</p>
     </router-link>
   </div>
 </template>

@@ -4,11 +4,15 @@
     <hr />
     <div class="catContainer">
       <div>
+        <div class="description">
+          <p>{{ cat.breeds[0].description }}</p>
+        </div>
         <div>
           <BreedChars :breed="cat.breeds[0]" />
         </div>
         <div
           v-show="cat.breeds[0].vetstreet_url || cat.breeds[0].vcahospitals_url"
+          class="links"
         >
           <hr />
           <p>Click below if you want to know even more about this breed!</p>
@@ -66,6 +70,14 @@ if (route.params.id !== "random") {
   font-size: 26px;
 }
 
+.description {
+  margin: 10px 10px 10px 0;
+}
+
+.links {
+  max-width: 500px;
+}
+
 hr {
   border: none;
   height: 2px;
@@ -94,7 +106,7 @@ a:hover {
 }
 
 p {
-  max-width: 500px;
+  max-width: 700px;
 }
 
 @media (max-width: 900px) {

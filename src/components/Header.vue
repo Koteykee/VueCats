@@ -3,7 +3,7 @@
     <router-link :to="`/`">
       <h1>Cat Wiki</h1>
     </router-link>
-    <Search />
+    <Search v-if="route.path === '/'" />
     <Suspense>
       <RandomCat />
     </Suspense>
@@ -12,9 +12,12 @@
 
 <script setup>
 import { Suspense } from "vue";
+import { useRoute } from "vue-router";
 
 import Search from "./Search.vue";
 import RandomCat from "./RandomCat.vue";
+
+const route = useRoute();
 </script>
 
 <style scoped>
