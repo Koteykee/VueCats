@@ -3,7 +3,7 @@
     <router-link :to="`/`">
       <h1>Cat Wiki</h1>
     </router-link>
-    <Search v-if="route.path === '/'" />
+    <Search />
     <Suspense>
       <RandomCat />
     </Suspense>

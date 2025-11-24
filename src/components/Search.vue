@@ -18,10 +18,13 @@
         <li
           v-for="searchResult in searchResults"
           :key="searchResult.id"
-          @click="fetchCatPage(searchResult.id)"
           class="cat"
         >
-          <router-link :to="`/cat/${searchResult.id}`" class="cat-inner">
+          <router-link
+            :to="`/cat/${searchResult.id}`"
+            @click="clearSearch"
+            class="cat-inner"
+          >
             {{ searchResult.breeds[0].name }}
           </router-link>
         </li>
@@ -31,7 +34,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 import { getCatList } from "@/api/api";
 
@@ -39,7 +42,6 @@ const searchQuery = ref("");
 const queryTimeout = ref(null);
 const searchResults = ref(null);
 const searchError = ref(null);
-const cat = ref("");
 
 const fetchCatList = () => {
   clearTimeout(queryTimeout.value);
@@ -65,8 +67,7 @@ const fetchCatList = () => {
   }, 300);
 };
 
-const fetchCatPage = (searchResult) => {
-  cat.value = searchResult;
+const clearSearch = () => {
   searchResults.value = null;
   searchQuery.value = "";
 };
