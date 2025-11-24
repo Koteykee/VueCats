@@ -44,6 +44,7 @@
 </template>
 
 <script setup>
+import { watch, onMounted } from "vue";
 import { useRoute } from "vue-router";
 
 import BreedChars from "./BreedChars.vue";
@@ -51,17 +52,26 @@ import { useCatStore } from "@/stores/catStore";
 import { storeToRefs } from "pinia";
 
 const route = useRoute();
-
 const store = useCatStore();
-
 const { cat } = storeToRefs(store);
 
-if (route.params.id !== "random") {
-  store.catId = route.params.id;
-  await store.fetchCatPage();
-} else {
-  await store.fetchRandomCat();
-}
+const loadCat = async (id) => {
+  if (id === "random") {
+    await store.fetchRandomCat();
+  } else {
+    store.catId = id;
+    await store.fetchCatPage();
+  }
+};
+
+onMounted(() => {
+  loadCat(route.params.id);
+});
+
+watch(
+  () => route.params.id,
+  (newId) => loadCat(newId)
+);
 </script>
 
 <style scoped>
